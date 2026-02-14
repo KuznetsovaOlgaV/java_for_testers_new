@@ -15,9 +15,9 @@ public class Geometry {
 
 
 //Треугольник
-        Triangle.printPerimetrTriangle(5.0, 7.0, 11.0);
-        Triangle.printPerimetrTriangle(6.0, 7.0, 12.0);
-        Triangle.printPerimetrTriangle(5.0, 8.0, 10.0);
+//        Triangle.printPerimetrTriangle(5.0, 7.0, 11.0);
+//        Triangle.printPerimetrTriangle(6.0, 7.0, 12.0);
+//        Triangle.printPerimetrTriangle(5.0, 8.0, 10.0);
 
         Triangle.printAreaTriangle(5.0, 7.0, 11.0);
         Triangle.printAreaTriangle(6.0, 7.0, 12.0);
