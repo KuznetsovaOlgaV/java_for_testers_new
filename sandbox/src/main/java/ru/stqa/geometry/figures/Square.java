@@ -8,7 +8,7 @@ public record Square(double side) {
         String text = String.format("Площадь квадрата со стороной %f= %f", s.side, s.area());
         System.out.println(text);
     }
-    
+
     public double area() {
         return this.side * this.side;
     }

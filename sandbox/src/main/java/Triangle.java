@@ -1,22 +1,10 @@
-package ru.stqa.geometry;
-
-import ru.stqa.geometry.figures.Rectangle;
-import ru.stqa.geometry.figures.Square;
-
-public class Geometry {
+public class Triangle {
     public static void main(String[] args) {
-        Square.printSquareArea(new Square(7.0));
-        Square.printSquareArea(new Square(5.0));
-        Square.printSquareArea(new Square(3.0));
 
-        Rectangle.printRectangleArea(3.0, 5.0);
-        Rectangle.printRectangleArea(7.0, 9.0);
-
-
-/// //  Треугольник площадь пока ПРЯМОУГОЛЬНОГО
         printPerimetrTriangle(5.0,7.0,15.0);
         printPerimetrTriangle(6.0,7.0,19.0);
         printPerimetrTriangle(5.0,8.0,20.0);
+        System.out.println("hello, world!");
 
         printAreaTriangle(5.0,7.0,15.0);
         printAreaTriangle(6.0,7.0,15.0);
@@ -27,7 +15,7 @@ public class Geometry {
 //
 //        System.out.println("периметр треугольника со сторонами " + side_a  +";"+ side_b  +";"+ sibe_c +  "=" + (side_a + side_b + sibe_c));
 //        System.out.println("полупериметр треугольника со сторонами " + side_a + side_b + sibe_c + "=" + (side_a + side_b + sibe_c) / 2);
-        //System.out.println("площадь треугольника со сторонами " + side_a + side_b + sibe_c + "=" + "здесь будет формула Герона");
+//        System.out.println("площадь треугольника со сторонами " + side_a + side_b + sibe_c + "=" + "здесь будет формула Герона");
     }
 
     private static void printAreaTriangle(double a, double b, double c) {
@@ -46,6 +34,5 @@ public class Geometry {
         return a + b + c;
     }
 
-    }
-
+}
 
