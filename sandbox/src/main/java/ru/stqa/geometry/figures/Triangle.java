@@ -2,20 +2,20 @@ package ru.stqa.geometry.figures;
 
 import static java.lang.Math.sqrt;
 
-public class Triangle {
+public record Triangle (double a, double b, double c){
 
-    public static void printAreaTriangle(double a, double b, double c) {
-        var text = String.format("площадь треугольника со сторонами %f и %f и %f =%f", a, b, c, area(a, b, c));
+
+    public static void printAreaTriangle(Triangle s) {
+        String text = String.format("площадь треугольника со сторонами %f и %f и %f =%f", s.a, s.b, s.c, s.area());
         System.out.println(text);
     }
 
-    public static double area(double a, double b, double c) {
-        return sqrt(((a + b + c) / 2) * (((a + b + c) / 2) - a) * (((a + b + c) / 2) - b) * (((a + b + c) / 2) - c));
+      public double area() {
+        return sqrt(((this.a + this.b + this.c) / 2) * (((this.a + this.b + this.c) / 2) - this.a) * (((this.a + this.b + this.c) / 2) - this.b) * (((this.a + this.b + this.c) / 2) - this.c));
     }
 
-    public static double perimetr(double a, double b, double c) {
-        return a + b + c;
+    public double perimetr() {
+        return this.a + this.b + this.c;
     }
-
 }
 
