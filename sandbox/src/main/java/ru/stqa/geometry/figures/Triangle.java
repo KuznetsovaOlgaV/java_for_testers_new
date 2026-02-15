@@ -16,14 +16,6 @@ public class Triangle {
     public static double perimetr(double a, double b, double c) {
         return a + b + c;
     }
-//
-//    public static void printPerimetrTriangle(double a, double b, double c){
-//       var text = String.format("периметр треугольника со сторонами %f и %f и %f =%f", a, b, c, perimetrTriangle(a, b, c));
-//        System.out.println(text);
-//    }
-//
-//    private static double perimetrTriangle(double a, double b, double c) {
-//        return a + b + c;
-//    }
+
 }
 
