@@ -19,19 +19,27 @@ public class TriangleTests {
     }
 
     @Test
-    void cannotCreateTriangleWithNegativeSide() {
+    void cannotCreateTriangleWithNegativeSideA() {
         try {
             new Triangle(-5.0, 7.0, 11.0);
             Assertions.fail();
         } catch (IllegalArgumentException exception) {
-            //OK
+           // OK
         }
+            }
+
+    @Test
+    void cannotCreateTriangleWithNegativeSideB() {
         try {
             new Triangle(5.0, -7.0, 11.0);
             Assertions.fail();
         } catch (IllegalArgumentException exception) {
             //OK
         }
+    }
+
+    @Test
+    void cannotCreateTriangleWithNegativeSideC() {
         try {
             new Triangle(5.0, 7.0, -11.0);
             Assertions.fail();
@@ -39,4 +47,15 @@ public class TriangleTests {
             //OK
         }
     }
-  }
+
+
+    @Test
+    void cannotCreateTriangleInequality() {
+        try {
+            new Triangle(5.0, 7.0, 19.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+            //OK
+        }
+    }
+}
