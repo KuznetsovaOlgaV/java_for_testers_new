@@ -3,18 +3,16 @@ import java.io.File;
 public class Hello {
     public static void main(String[] args) {
         try {
-            var z = calculate();
-            System.out.println(z);
+            int z = calculate();
             System.out.println("hello, world!");
         } catch (ArithmeticException exception) {
-            //System.out.println(exception.getMessage());
-            exception.printStackTrace();
+           exception.printStackTrace();
         }
     }
 
     private static int calculate() {
         var x = 1;
-        var y = 1;
+        var y = 0;
         var z = divide(x, y);
         return z;
     }
