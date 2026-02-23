@@ -1,20 +1,14 @@
-import java.io.File;
-
 public class Hello {
     public static void main(String[] args) {
-        try {
-            int z = calculate();
-            System.out.println("hello, world!");
-        } catch (ArithmeticException exception) {
-           exception.printStackTrace();
-        }
-    }
 
-    private static int calculate() {
         var x = 1;
         var y = 0;
-        var z = divide(x, y);
-        return z;
+        if (y == 0) {
+            System.out.println("Division by zero is not allowed");
+        } else {
+            int z = divide(x, y);
+            System.out.println("hello, world!");
+        }
     }
 
     private static int divide(int x, int y) {
