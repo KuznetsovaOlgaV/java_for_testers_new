@@ -68,8 +68,11 @@ public class TriangleTests {
 
     @Test
     void testEquality2() {
-        var t1 = new Triangle(5.0, 7.0, 11.0);
-        var t2 = new Triangle(11.0, 5.0, 7.0);
+        var a = 3;
+        var b = 4;
+        var c = 2;
+        var t1 = new Triangle(a, b, c);
+        var t2 = new Triangle(a, c, b);
         Assertions.assertEquals(t1, t2);
     }
 
