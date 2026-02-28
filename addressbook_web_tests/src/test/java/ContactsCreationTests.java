@@ -24,7 +24,7 @@ public class ContactsCreationTests {
 
     @Test
     public void canCreateContacts() {
-        if (!isElementPresent(By.name("Number of results:"))) {
+        if (!isElementPresent(By.name("Number of results"))) {
             driver.findElement(By.linkText("add new")).click();
         }
         driver.findElement(By.name("theform")).click();
