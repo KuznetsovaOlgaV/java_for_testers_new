@@ -56,7 +56,6 @@ public class ContactsCreationTests {
         if (!isElementPresent(By.name("Number of results:"))) {
             driver.findElement(By.linkText("add new")).click();
         }
-        driver.findElement(By.linkText("add new")).click();
         driver.findElement(By.name("theform")).click();
         driver.findElement(By.name("firstname")).click();
         driver.findElement(By.name("firstname")).sendKeys("");
