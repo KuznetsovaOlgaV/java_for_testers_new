@@ -1,33 +1,8 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import tests.TestBase;
 
-public class ContactsRemovalTests {
-    private WebDriver driver;
-
-    @BeforeEach
-    public void setUp() {
-        driver = new FirefoxDriver();
-        driver.get("http://localhost/addressbook/");
-        driver.manage().window().setSize(new Dimension(1811, 1079));
-        driver.findElement(By.name("user")).click();
-        driver.findElement(By.name("user")).sendKeys("admin");
-        driver.findElement(By.name("pass")).click();
-        driver.findElement(By.name("pass")).sendKeys("secret");
-        driver.findElement(By.cssSelector("input:nth-child(7)")).click();
-    }
-
-    @AfterEach
-    public void tearDown() {
-
-        driver.findElement(By.linkText("Logout")).click();
-        driver.quit();
-    }
+public class ContactsRemovalTests extends TestBase {
 
     @Test
     public void canRemoveContacts() {
@@ -62,13 +37,5 @@ public class ContactsRemovalTests {
         driver.findElement(By.linkText("home page")).click();
     }
 
-    private boolean isElementPresent(By locator) {
-        try {
-            driver.findElement(locator);
-            return true;
-        } catch (NoSuchElementException exception) {
-            return false;
-        }
-    }
 
 }
