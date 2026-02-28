@@ -31,7 +31,7 @@ public class ContactsRemovalTests {
 
     @Test
     public void canRemoveContacts() {
-        if (!isElementPresent(By.name("Number of results:"))) {
+        if (!isElementPresent(By.name("selected[]"))) {
             driver.findElement(By.linkText("add new")).click();
         }
         if (!isElementPresent(By.name("selected[]"))) {
