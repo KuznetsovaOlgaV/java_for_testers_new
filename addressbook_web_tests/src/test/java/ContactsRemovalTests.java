@@ -1,3 +1,4 @@
+import model.ContactsData;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
@@ -13,7 +14,7 @@ public class ContactsRemovalTests extends TestBase {
 //            }
 //        }
         if (!isContactsPresent()) {
-            createContacts("firstname", "lastname", "address", "mobile", "email");
+            createContacts(new ContactsData("firstname", "lastname", "address", "mobile", "email"));
         }
         removeContacts();
     }

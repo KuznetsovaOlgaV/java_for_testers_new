@@ -1,6 +1,7 @@
 package tests;
 
 import manager.ApplicationManager;
+import model.ContactsData;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;//
@@ -50,18 +51,18 @@ public class TestBase {
         }
     }
 
-    protected void createContacts(String firstname, String lastname, String address, String mobile, String email) {
+    protected void createContacts(ContactsData contacts) {
         driver.findElement(By.name("theform")).click();
         driver.findElement(By.name("firstname")).click();
-        driver.findElement(By.name("firstname")).sendKeys("firstname");
+        driver.findElement(By.name("firstname")).sendKeys(contacts.firstname());
         driver.findElement(By.name("lastname")).click();
-        driver.findElement(By.name("lastname")).sendKeys("lastname");
+        driver.findElement(By.name("lastname")).sendKeys(contacts.lastname());
         driver.findElement(By.name("address")).click();
-        driver.findElement(By.name("address")).sendKeys("address");
+        driver.findElement(By.name("address")).sendKeys(contacts.address());
         driver.findElement(By.name("mobile")).click();
-        driver.findElement(By.name("mobile")).sendKeys("mobile");
+        driver.findElement(By.name("mobile")).sendKeys(contacts.mobile());
         driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("email")).sendKeys("email");
+        driver.findElement(By.name("email")).sendKeys(contacts.email());
         driver.findElement(By.xpath("(//input[@name=\'submit\'])[2]")).click();
         driver.findElement(By.linkText("home page")).click();
     }
