@@ -1,21 +1,19 @@
 package manager;
 
-import model.ContactsData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ApplicationManager {
     protected WebDriver driver;
     private LoginHelper session;
     private GroupHelper groups;
+    private ContactsHelper contacts;
 
 
     public void init() {
-
         if (driver == null) {
             driver = new FirefoxDriver();
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
@@ -39,6 +37,13 @@ public class ApplicationManager {
         return groups;
     }
 
+    public ContactsHelper contacts() {
+        if (contacts == null) {
+            contacts = new ContactsHelper(this);
+        }
+        return contacts;
+    }
+
     protected boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
@@ -48,41 +53,4 @@ public class ApplicationManager {
         }
     }
 
-    public void createContacts(ContactsData contacts) {
-        driver.findElement(By.name("theform")).click();
-        driver.findElement(By.name("firstname")).click();
-        driver.findElement(By.name("firstname")).sendKeys(contacts.firstname());
-        driver.findElement(By.name("lastname")).click();
-        driver.findElement(By.name("lastname")).sendKeys(contacts.lastname());
-        driver.findElement(By.name("address")).click();
-        driver.findElement(By.name("address")).sendKeys(contacts.address());
-        driver.findElement(By.name("mobile")).click();
-        driver.findElement(By.name("mobile")).sendKeys(contacts.mobile());
-        driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("email")).sendKeys(contacts.email());
-        driver.findElement(By.xpath("(//input[@name=\'submit\'])[2]")).click();
-        driver.findElement(By.linkText("home page")).click();
-    }
-
-    public void openContactsPage() {
-        if (!isElementPresent(By.name("Number of results"))) {
-            driver.findElement(By.linkText("add new")).click();
-        }
-    }
-
-    public void openContactsPage2() {
-        if (!isElementPresent(By.name("Number of results")) && !isElementPresent(By.name("selected[]"))) {
-            driver.findElement(By.linkText("add new")).click();
-        }
-    }
-
-    public boolean isContactsPresent() {
-        return isElementPresent(By.name("selected[]"));
-    }
-
-    public void removeContacts() {
-        driver.findElement(By.name("selected[]")).click();
-        driver.findElement(By.name("delete")).click();
-        driver.findElement(By.linkText("home page")).click();
-    }
 }

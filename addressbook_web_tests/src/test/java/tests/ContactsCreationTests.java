@@ -7,21 +7,16 @@ public class ContactsCreationTests extends TestBase {
 
     @Test
     public void canCreateContacts() {
-        app.openContactsPage();
-        app.createContacts(new ContactsData("firstname", "lastname", "address", "mobile", "email"));
+        app.contacts().createContacts(new ContactsData("firstname", "lastname", "address", "mobile", "email"));
     }
 
     @Test
     public void canCreateContactsWithEmptyFirstName() {
-        app.openContactsPage();
-        app.createContacts(new ContactsData());
+        app.contacts().createContacts(new ContactsData());
     }
 
     @Test
     public void canCreateContactsWithFirstNameOnly() {
-        app.openContactsPage();
-        var emptyContacts = new ContactsData();
-        var contactsWithFirstName = emptyContacts.withFirstName("some firstname");
-        app.createContacts(contactsWithFirstName);
+        app.contacts().createContacts(new ContactsData().withFirstName("some firstname"));
     }
 }
