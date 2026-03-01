@@ -15,23 +15,9 @@ public class ApplicationManager {
 
 
     public void init() {
-//        public void init(String browser) {
+
         if (driver == null) {
-//            if ("firefox".equals(browser)) {
-//                driver = new FirefoxDriver();
-//            } else if ("chrome".equals(browser)) {
-//                driver = new ChromeDriver();
-//            } else {
-//                throw new IllegalArgumentException(String.format("Unknown browser %s",browser));
-//            }
             driver = new FirefoxDriver();
-//            Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-//            driver.get("http://localhost/addressbook/");
-//            driver.manage().window().setSize(new Dimension(1811, 1077));
-//            driver.findElement(By.name("user")).sendKeys("admin");
-//            driver.findElement(By.name("pass")).sendKeys("secret");
-//            driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
-//        }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(2199, 1180));
