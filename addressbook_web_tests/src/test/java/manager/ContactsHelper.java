@@ -11,13 +11,13 @@ public class ContactsHelper extends HelperBase {
 
     public void openContactsPage() {
         if (!manager.isElementPresent(By.name("Number of results"))) {
-            manager.driver.findElement(By.linkText("add new")).click();
+            click(By.linkText("add new"));
         }
     }
 
     public void openContactsPage2() {
         if (!manager.isElementPresent(By.name("Number of results")) && !manager.isElementPresent(By.name("selected[]"))) {
-            manager.driver.findElement(By.linkText("add new")).click();
+            click(By.linkText("add new"));
         }
     }
 
@@ -28,25 +28,62 @@ public class ContactsHelper extends HelperBase {
 
     public void createContacts(ContactsData contacts) {
         openContactsPage();
-        manager.driver.findElement(By.name("theform")).click();
-        manager.driver.findElement(By.name("firstname")).click();
-        manager.driver.findElement(By.name("firstname")).sendKeys(contacts.firstname());
-        manager.driver.findElement(By.name("lastname")).click();
-        manager.driver.findElement(By.name("lastname")).sendKeys(contacts.lastname());
-        manager.driver.findElement(By.name("address")).click();
-        manager.driver.findElement(By.name("address")).sendKeys(contacts.address());
-        manager.driver.findElement(By.name("mobile")).click();
-        manager.driver.findElement(By.name("mobile")).sendKeys(contacts.mobile());
-        manager.driver.findElement(By.name("email")).click();
-        manager.driver.findElement(By.name("email")).sendKeys(contacts.email());
-        manager.driver.findElement(By.xpath("(//input[@name=\'submit\'])[2]")).click();
-        manager.driver.findElement(By.linkText("home page")).click();
+        initContactsCreation();
+        fillContactsForm(contacts);
+        submitContactsCreation();
+        returnToContactsPage();
     }
 
     public void removeContacts() {
         openContactsPage2();
-        manager.driver.findElement(By.name("selected[]")).click();
-        manager.driver.findElement(By.name("delete")).click();
-        manager.driver.findElement(By.linkText("home page")).click();
+        selectContacts();
+        removeSelectedContacts();
+        returnToContactsPage();
     }
+
+    public void modifyContacts(ContactsData modifiedContacts) {
+        openContactsPage2();
+        selectContacts();
+        initContactsModification();
+        fillContactsForm(modifiedContacts);
+        submitContactsModification();
+        returnToContactsPage();
+    }
+
+    private void submitContactsCreation() {
+        click(By.xpath("(//input[@name=\'submit\'])[2]"));
+    }
+
+    private void initContactsCreation() {
+        click(By.name("theform"));
+    }
+
+    private void removeSelectedContacts() {
+        click(By.name("delete"));
+    }
+
+    private void returnToContactsPage() {
+        click(By.linkText("home page"));
+    }
+
+    private void submitContactsModification() {
+        click(By.name("update"));
+    }
+
+    private void fillContactsForm(ContactsData contacts) {
+        type(By.name("firstname"), contacts.firstname());
+        type(By.name("lastname"), contacts.lastname());
+        type(By.name("address"), contacts.address());
+        type(By.name("mobile"), contacts.mobile());
+        type(By.name("email"), contacts.email());
+    }
+
+    private void initContactsModification() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    private void selectContacts() {
+        click(By.name("selected[]"));
+    }
+
 }
