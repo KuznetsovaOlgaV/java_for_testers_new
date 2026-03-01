@@ -1,6 +1,7 @@
 package tests;
 
 import model.ContactsData;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ContactsRemovalTests extends TestBase {
@@ -11,7 +12,6 @@ public class ContactsRemovalTests extends TestBase {
             app.contacts().createContacts(new ContactsData("firstname", "lastname", "address", "mobile", "email"));
         }
         app.contacts().removeContacts();
+
     }
-
-
 }
