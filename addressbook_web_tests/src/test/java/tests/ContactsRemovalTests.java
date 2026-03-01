@@ -1,17 +1,16 @@
 package tests;
 
-import model.ContactsData;
-import org.junit.jupiter.api.Assertions;
+import model.ContactData;
 import org.junit.jupiter.api.Test;
 
 public class ContactsRemovalTests extends TestBase {
 
     @Test
-    public void canRemoveContacts() {
-        if (!app.contacts().isContactsPresent()) {
-            app.contacts().createContacts(new ContactsData("firstname", "lastname", "address", "mobile", "email"));
+    public void canRemoveContact() {
+        if (!app.contact().isContactsPresent()) {
+            app.contact().createContact(new ContactData("firstname", "lastname", "address", "mobile", "email"));
         }
-        app.contacts().removeContacts();
+        app.contact().removeContact();
 
     }
 }

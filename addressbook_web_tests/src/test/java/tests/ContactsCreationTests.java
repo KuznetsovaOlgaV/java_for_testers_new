@@ -1,22 +1,22 @@
 package tests;
 
-import model.ContactsData;
+import model.ContactData;
 import org.junit.jupiter.api.Test;
 
 public class ContactsCreationTests extends TestBase {
 
     @Test
-    public void canCreateContacts() {
-        app.contacts().createContacts(new ContactsData("firstname", "lastname", "address", "mobile", "email"));
+    public void canCreateContact() {
+        app.contact().createContact(new ContactData("firstname", "lastname", "address", "mobile", "email"));
     }
 
     @Test
-    public void canCreateContactsWithEmptyFirstName() {
-        app.contacts().createContacts(new ContactsData());
+    public void canCreateContactWithEmptyFirstName() {
+        app.contact().createContact(new ContactData());
     }
 
     @Test
-    public void canCreateContactsWithFirstNameOnly() {
-        app.contacts().createContacts(new ContactsData().withFirstName("some firstname"));
+    public void canCreateContactWithFirstNameOnly() {
+        app.contact().createContact(new ContactData().withFirstName("some firstname"));
     }
 }
