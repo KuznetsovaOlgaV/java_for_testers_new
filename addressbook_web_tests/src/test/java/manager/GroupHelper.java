@@ -47,8 +47,7 @@ public class GroupHelper extends HelperBase {
     }
 
     private void initGroupCreation(GroupData group) {
-      click(By.name("new"));
-     //   click(By.cssSelector(String.format("input[value='%s']", group.id())));
+        click(By.name("new"));
     }
 
     private void removeSelectedGroups() {

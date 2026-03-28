@@ -26,8 +26,6 @@ public class ContactRemovalTests extends TestBase {
         var expectedListContact = new ArrayList<>(oldContacts);
         expectedListContact.remove(index);
         Assertions.assertEquals(newContacts, expectedListContact);
-
-
     }
 
 
