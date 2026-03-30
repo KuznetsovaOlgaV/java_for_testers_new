@@ -103,17 +103,13 @@ public class ContactHelper extends HelperBase {
     }
 
     public List<ContactData> getListContact() {
-        openContactsPage2();
         var contacts = new ArrayList<ContactData>();
         var rows = manager.driver.findElements(By.cssSelector("tr[name='entry']"));
         for (var row : rows) {
-//            var firstname = row.getText();
-//            var lastname = row.getText();
-            var firstname = row.findElement(By.cssSelector("td:nth-child(3)"));
-            var lastname = row.findElement(By.cssSelector("td:nth-child(2)"));
+            var firstname = row.getText();
             var checkbox = row.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
-           contacts.add(new ContactData().withId(id).withFirstName(firstname.getText()).withLastName(lastname.getText()));
+           contacts.add(new ContactData().withId(id).withFirstName(firstname));
         }
         return contacts;
     }
