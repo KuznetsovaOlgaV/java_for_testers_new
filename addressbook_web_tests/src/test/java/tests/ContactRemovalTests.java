@@ -19,31 +19,11 @@ public class ContactRemovalTests extends TestBase {
         var oldContacts = app.contacts().getListContact();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
-        //
-        var contactToRemove = oldContacts.get(index);
-        //
-        String idToRemove = contactToRemove.id();
-        ///
-        app.contacts().removeContact(contactToRemove);
-//        app.contacts().removeContactById(idToRemove);
-
-      //   app.contacts().removeContact(oldContacts.get(index));
+        app.contacts().removeContact(oldContacts.get(index));
         var newContacts = app.contacts().getListContact();
-        var expectedList = new ArrayList<>(oldContacts);
-//
-        expectedList.removeIf(contact -> contact.id().equals(idToRemove));
-        //expectedList.remove(contactToRemove);
-      //  expectedList.remove(index);
-        ///
-        Comparator<ContactData> compareById = (o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        };
-//        Comparator<ContactData> compareById = (o1, o2) ->
-//                o1.id().compareTo(o2.id());
-        newContacts.sort(compareById);
-        expectedList.sort(compareById);
-        Assertions.assertEquals(newContacts, expectedList);
-
+        var expectedListContact = new ArrayList<>(oldContacts);
+        expectedListContact.remove(index);
+        Assertions.assertEquals(newContacts, expectedListContact);
     }
 
 
