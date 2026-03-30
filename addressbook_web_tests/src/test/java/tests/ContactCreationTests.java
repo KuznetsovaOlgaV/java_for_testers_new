@@ -46,6 +46,7 @@ public class ContactCreationTests extends TestBase {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
         newContacts.sort(comparatorById);
+
         var expectedListContact = new ArrayList<>(oldContacts);
         expectedListContact.add(contact.withId(newContacts.get(newContacts.size() - 1).id()).withLastName("").withAddress("").withMobile("").withEMail(""));
         expectedListContact.sort(comparatorById);
