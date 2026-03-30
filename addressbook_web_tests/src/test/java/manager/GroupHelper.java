@@ -20,7 +20,7 @@ public class GroupHelper extends HelperBase {
 
     public void createGroup(GroupData group) {
         openGroupsPage();
-        initGroupCreation(group);
+        initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
         returnToGroupsPage();
@@ -46,9 +46,8 @@ public class GroupHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    private void initGroupCreation(GroupData group) {
-      click(By.name("new"));
-     //   click(By.cssSelector(String.format("input[value='%s']", group.id())));
+    private void initGroupCreation() {
+        click(By.name("new"));
     }
 
     private void removeSelectedGroups() {

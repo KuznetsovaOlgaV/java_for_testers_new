@@ -39,9 +39,9 @@ public class ContactHelper extends HelperBase {
         returnToContactsPage();
     }
 
-    public void modifyContact(ContactData contact, ContactData modifiedContacts) {
+    public void modifyContact(ContactData modifiedContacts) {
         openContactsPage2();
-        selectContact(contact);
+        selectContact(null);
         initContactModification();
         fillContactForm(modifiedContacts);
         submitContactModification();
@@ -81,7 +81,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectContact(ContactData contact) {
-        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
+        click(By.cssSelector("input[type='checkbox']"));
     }
 
     public int getCountContact() {
@@ -103,17 +103,18 @@ public class ContactHelper extends HelperBase {
     }
 
     public List<ContactData> getListContact() {
-        openContactsPage2();
         var contacts = new ArrayList<ContactData>();
         var rows = manager.driver.findElements(By.cssSelector("tr[name='entry']"));
         for (var row : rows) {
 
-            var firstname = row.getText();
-//            var lastname = row.getText();
+
             var checkbox = row.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
-            contacts.add(new ContactData().withId(id).withFirstName(firstname)); //
-//            contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)); //
+
+            var fName = row.findElement(By.xpath("td"));
+            String firstnametd = fName.getText();
+
+            contacts.add(new ContactData().withId(id).withFirstName(firstnametd));
         }
         return contacts;
     }
