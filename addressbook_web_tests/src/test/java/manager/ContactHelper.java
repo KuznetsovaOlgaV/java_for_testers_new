@@ -39,11 +39,11 @@ public class ContactHelper extends HelperBase {
         returnToContactsPage();
     }
 
-    public void modifyContact(ContactData modifiedContacts) {
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openContactsPage2();
-        selectContact(null);
+        selectContact(contact);
         initContactModification();
-        fillContactForm(modifiedContacts);
+        fillContactForm(modifiedContact);
         submitContactModification();
         returnToContactsPage();
     }
