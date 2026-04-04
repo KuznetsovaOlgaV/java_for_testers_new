@@ -18,17 +18,12 @@ public class ContactModificationTests extends TestBase {
         var oldContacts = app.contacts().getListContact();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
-        var testData = new ContactData().withFirstName("modified first name").withLastName("modified last name");
+        var testData = new ContactData().withFirstName("modified first name");//.withLastName("modified last name");
         app.contacts().modifyContact(oldContacts.get(index), testData);
+
         var newContacts = app.contacts().getListContact();
         var expectedListContact = new ArrayList<>(oldContacts);
-        expectedListContact.set(index, testData.withId(oldContacts.get(index).id())
-                .withFirstName("")
-                .withLastName("")
-                .withAddress("")
-                .withMobile("")
-                .withEMail("")
-        );
+        expectedListContact.set(index, testData.withId(oldContacts.get(index).id()));
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };

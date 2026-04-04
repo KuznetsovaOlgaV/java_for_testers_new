@@ -42,7 +42,7 @@ public class ContactHelper extends HelperBase {
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openContactsPage2();
         selectContact(contact);
-        initContactModification();
+        initContactModification(contact);
         fillContactForm(modifiedContact);
         submitContactModification();
         returnToContactsPage();
@@ -76,12 +76,13 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contact.email());
     }
 
-    private void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    private void initContactModification(ContactData contact) {
+//        click(By.xpath("//img[@alt='Edit']"));
+        click(By.xpath(String.format("//input[@value='%s']/ancestor::tr//img[@alt='Edit']", contact.id()))); //находит по нужному индексу, который ранее выбрали
     }
 
     private void selectContact(ContactData contact) {
-        click(By.cssSelector(String.format("input[value='%s']",contact.id())));
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
     public int getCountContact() {
@@ -112,8 +113,11 @@ public class ContactHelper extends HelperBase {
             var firstname = row.findElement(By.cssSelector("td:nth-child(3)"));
             var lastname = row.findElement(By.cssSelector("td:nth-child(2)"));
             var checkbox = row.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-           contacts.add(new ContactData().withId(id).withFirstName(firstname.getText()).withLastName(lastname.getText()));
+            var index = checkbox.getAttribute("value");
+            contacts.add(new ContactData().withId(index)
+                    .withFirstName(firstname.getText())
+                    .withLastName(lastname.getText())
+            );
         }
         return contacts;
     }
