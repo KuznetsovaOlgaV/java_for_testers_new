@@ -1,8 +1,9 @@
-package tests;
+package ru.stqa.addressbook.tests;
 
-import model.ContactData;
-import model.GroupData;
+import ru.stqa.addressbook.common.CommonFunctions;
+import ru.stqa.addressbook.model.ContactData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -19,7 +20,9 @@ public class ContactCreationTests extends TestBase {
                 for (var address : List.of("", "contact address")) {
                     for (var mobile : List.of("", "contact mobile")) {
                         for (var email : List.of("", "contact email")) {
-                            result.add(new ContactData().withFirstName(firstname).withLastName(lastname).withAddress(address).withMobile(mobile).withEMail(email));
+                            for (var photo : List.of("", randomFile("src/test/resources/images/avatar.png"))) {
+                                result.add(new ContactData().withFirstName(firstname).withLastName(lastname).withAddress(address).withMobile(mobile).withEMail(email).withPhoto(photo));
+                            }
                         }
                     }
                 }
@@ -28,13 +31,24 @@ public class ContactCreationTests extends TestBase {
 
         for (int i = 0; i < 5; i++) {
             result.add(new ContactData()
-                    .withFirstName(randomString(i * 10))
-                    .withLastName(randomString(i * 10))
-                    .withAddress(randomString(i * 10))
-                    .withMobile(randomString(i * 10))
-                    .withEMail(randomString(i * 10)));
+                    .withFirstName(CommonFunctions.randomString(i * 10))
+                    .withLastName(CommonFunctions.randomString(i * 10))
+                    .withAddress(CommonFunctions.randomString(i * 10))
+                    .withMobile(CommonFunctions.randomString(i * 10))
+                    .withEMail(CommonFunctions.randomString(i * 10))
+                    .withPhoto(randomFile("src/test/resources/images"))
+            );
         }
         return result;
+    }
+
+    @Test
+    void CreateOneContact() {
+        var contact = new ContactData()
+                .withFirstName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                .withPhoto(randomFile("src/test/resources/images"));
+        app.contacts().create(contact);
     }
 
     @ParameterizedTest
@@ -51,9 +65,11 @@ public class ContactCreationTests extends TestBase {
         var expectedListContact = new ArrayList<>(oldContacts);
         expectedListContact.add(contact.withId(newContacts.get(newContacts.size() - 1).id())
 //                .withLastName("")
-                .withAddress("")
-                .withMobile("")
-                .withEMail(""));
+                        .withAddress("")
+                        .withMobile("")
+                        .withEMail("")
+                        .withPhoto(randomFile(""))
+        );
         expectedListContact.sort(compareById);
         Assertions.assertEquals(newContacts, expectedListContact);
 
@@ -61,7 +77,7 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactData> negativeContactProvider() {
         var result = new ArrayList<ContactData>(List.of(
-                new ContactData("", "contact name'", "", "", "", "")));
+                new ContactData("", "contact name'", "", "", "", "", "")));
         return result;
     }
 
